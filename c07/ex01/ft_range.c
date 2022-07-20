@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pduhamel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 11:42:10 by pduhamel          #+#    #+#             */
-/*   Updated: 2022/07/20 09:56:38 by pduhamel         ###   ########.fr       */
+/*   Created: 2022/07/20 09:50:03 by pduhamel          #+#    #+#             */
+/*   Updated: 2022/07/20 10:10:47 by pduhamel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
-{
-	int	n;
-	int	cnt;
+#include <stdlib.h>
 
-	n = 0;
-	if (to_find[n] == '\0')
-		return (str);
-	while (str[n] != '\0')
+int	*ft_range(int min, int max)
+{
+	size_t	diff;
+	int		*tab;
+	int		i;
+
+	diff = max - min;
+	tab = malloc(diff * sizeof(int));
+	i = 0;
+	while (min <= max)
 	{
-		cnt = 0;
-		while (str[n + cnt] == to_find[cnt] && to_find[cnt] != '\0')
-		{
-			cnt++;
-		}
-		if (to_find[cnt] == '\0')
-			return (&str[n]);
-		n++;
+		tab[i] = min;
+		min++;
+		i++;
 	}
-	return (0);
+	return (tab);
 }

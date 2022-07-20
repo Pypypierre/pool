@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pduhamel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 11:42:10 by pduhamel          #+#    #+#             */
-/*   Updated: 2022/07/20 09:56:38 by pduhamel         ###   ########.fr       */
+/*   Created: 2022/07/19 16:06:53 by pduhamel          #+#    #+#             */
+/*   Updated: 2022/07/20 10:15:41 by pduhamel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
-{
-	int	n;
-	int	cnt;
+#include <stdlib.h>
+#include <unistd.h>
 
-	n = 0;
-	if (to_find[n] == '\0')
-		return (str);
-	while (str[n] != '\0')
+char	*ft_strdup(char *src)
+{
+	int	i;
+	size_t		l;
+	char			*c;
+
+	l = 0;
+	i = 0;
+	while (src[i] != '\0')
 	{
-		cnt = 0;
-		while (str[n + cnt] == to_find[cnt] && to_find[cnt] != '\0')
-		{
-			cnt++;
-		}
-		if (to_find[cnt] == '\0')
-			return (&str[n]);
-		n++;
+		i++;
+		l++;
 	}
-	return (0);
+	c = malloc(l * sizeof(char));
+	if (c == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		c[i] = src[i];
+		i++;
+	}
+	return (c);
 }

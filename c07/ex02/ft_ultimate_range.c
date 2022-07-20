@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pduhamel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 11:42:10 by pduhamel          #+#    #+#             */
-/*   Updated: 2022/07/20 09:56:38 by pduhamel         ###   ########.fr       */
+/*   Created: 2022/07/20 10:17:40 by pduhamel          #+#    #+#             */
+/*   Updated: 2022/07/20 17:12:35 by pduhamel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(char *str, char *to_find)
-{
-	int	n;
-	int	cnt;
+#include <stdlib.h>
 
-	n = 0;
-	if (to_find[n] == '\0')
-		return (str);
-	while (str[n] != '\0')
+int	ft_ultimate_range(int **range, int min, int max)
+{
+	size_t	diff;
+	size_t	i;
+
+	i = 0;
+	diff = max - min;
+	*range = malloc(diff * sizeof(int));
+	if (range[i] == NULL)
+		return (-1);
+	i = 0;
+	while (min < max)
 	{
-		cnt = 0;
-		while (str[n + cnt] == to_find[cnt] && to_find[cnt] != '\0')
-		{
-			cnt++;
-		}
-		if (to_find[cnt] == '\0')
-			return (&str[n]);
-		n++;
+		(*range)[i] = min;
+		min++;
+		i++;
 	}
-	return (0);
+	if (min == max)
+	{
+		return (i);
+	}
+	else
+		return (-1);
 }
